@@ -1,13 +1,16 @@
+import PropTypes from 'prop-types';
 import css from './Description.module.css';
 
-export default function Description() {
+export default function Description({nameOfCafe, leaveFeedback}) {
   return (
     <>
-      <h1 className={css.title}>Sip Happens Café</h1>
-      <p className={css.text}>
-        Please leave your feedback about our service by selecting one of the
-        options below.
-      </p>
+      <h1 className={css.title}>{nameOfCafe}</h1>
+      <p className={css.text}>{leaveFeedback}</p>
     </>
   );
 }
+
+Description.propTypes = {
+  nameOfCafe: PropTypes.string,
+  leaveFeedback: PropTypes.string
+};

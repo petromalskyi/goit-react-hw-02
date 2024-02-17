@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import css from './Feedback.module.css';
 
 export default function Feedback({
@@ -17,3 +18,11 @@ export default function Feedback({
     </>
   );
 }
+
+Feedback.propTypes = {
+  good: PropTypes.number,
+ neutral: PropTypes.number,
+  bad: PropTypes.number,
+  totalFeedback: PropTypes.number,
+  positive: PropTypes.number,
+};

@@ -3,6 +3,7 @@ import css from './App.module.css';
 import Description from '../description/Description';
 import Options from '../options/Options';
 import Feedback from '../feedback/Feedback';
+import Notification from '../notification/Notification';
 
 const getStartOption = () => {
   const savedLocalStorage = window.localStorage.getItem('saved-clicks');
@@ -41,14 +42,20 @@ export default function App() {
   const positive = Math.round(
     ((values.good + values.neutral) / totalFeedback) * 100,
   );
+const messageNoFeedback = 'No feedback yet';
+const nameOfCafe ='Sip Happens Café';
+const leaveFeedback = 'Please leave your feedback about our service by selecting one of the options below.'
 
   return (
     <div className={css.container}>
-      <Description></Description>
+      <Description 
+        nameOfCafe={nameOfCafe} 
+        leaveFeedback = {leaveFeedback}>
+      </Description>
       <Options
         totalFeedback={totalFeedback}
-        onUpdateFeedback={updateFeedback}
-        onReset={reset}
+        onFeedbackUpdate={updateFeedback}
+        onFeedbackReset={reset}
       ></Options>
       {totalFeedback ? (
         <Feedback
@@ -59,7 +66,9 @@ export default function App() {
           positive={positive}
         ></Feedback>
       ) : (
-        <p>No feedback yet</p>
+        <Notification 
+          messageNoFeedback={messageNoFeedback}>
+        </Notification>
       )}
     </div>
   );
